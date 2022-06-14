@@ -1,0 +1,288 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@700&family=Poppins:wght@400;500;600&display=swap');
+@import url("https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css");
+
+
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+
+/* body { position: absolute; } */
+
+.main{
+  margin: 0;
+  padding: 0;
+  /* background: linear-gradient(120deg,#eb3349, #f45c43); */
+  height: 100vh;
+  /* overflow: hidden; */
+}
+
+
+.homeHeading{
+  color: white;
+  font-size: larger;
+  text-align: center;
+}
+
+.mainHeader{
+  width: 100%;
+  background: linear-gradient(135deg, #CA9980 0%, #984261 100%);
+  height: 300px;
+}
+
+
+.navbar {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 20px;
+  gap: 3%;
+  padding-top: 3%;
+
+
+}
+
+.navbar a {
+  float: left;
+  font-size: 18px;
+  color:lightgray;
+  text-align: center;
+  padding: 14px 16px;
+}
+
+.navbarContainer1{
+  /* border: 2px solid white; */
+
+  height: 80px;
+  width: 20%;
+}
+
+
+.navbarContainer2{
+  /* border: 2px solid white; */
+
+  height: 80px;
+  width: 30%;
+}
+
+.title{
+  font-size: 24px;
+  color:#F9FAF8;
+  /* padding-left: 50px; */
+
+}
+
+
+ul {
+  list-style-type: none;
+}
+
+li {
+  float: right;
+  font-size: 18px;
+  color:whitesmoke;
+}
+
+li a {
+  display: block;
+  padding: 8px;
+  }
+
+.menuItem:hover {
+    text-decoration: underline;
+    cursor: pointer;
+   }
+
+.donationListHeaderboxContainer {
+
+    /* height: 100px; */
+    /* padding-top: 1%; */
+    width: 100%;
+    /* background-color: black; */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+.donationListHeaderboxContainer h1{
+    color: white;
+    font-size: 44px;
+    text-align: center;
+    font-weight: bolder;
+}
+
+.donationListHeaderboxContainer h2{
+  color: white;
+  font-size: 20px;
+  text-align: center;
+  margin-top: 1%;
+  font-weight: lighter;
+}
+
+
+.mainInformationContainer{
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    
+}
+
+.informationContainer{
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background-color: #F8F8F8;
+    width: 50%;
+    height: 600px;
+    /* border: 2px solid black; */
+
+    box-shadow: 0 2px 6px ;
+    border-radius: 15px;
+
+    /* display: flex;
+    align-items: flex-start;
+    justify-content: center; */
+}
+
+.mainContainer{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-direction: row;
+    height: 50%;
+    width: 100%;
+}
+
+
+.profileHeading{
+    /* padding-right: 6%; */
+    color: black;
+    text-align: center;
+    /* color: white; */
+    font-size: 24px;
+    font-weight: bold;
+    margin-top: 2%;
+    margin-bottom: 2%;
+
+  }
+
+
+
+  // @import "compass/css3";
+
+  // More practical CSS...
+  // using mobile first method (IE8,7 requires respond.js polyfill https://github.com/scottjehl/Respond)
+  
+  $breakpoint-alpha: 480px; // adjust to your needs
+  
+  .rwd-table {
+    margin: 1em 0;
+    min-width: 300px; // adjust to your needs
+    
+    tr {
+      border-top: 1px solid #ddd;
+      border-bottom: 1px solid #ddd;
+    }
+    
+    th {
+      display: none; // for accessibility, use a visually hidden method here instead! Thanks, reddit!   
+    }
+    
+    td {
+      display: block; 
+      
+      &:first-child {
+        padding-top: .5em;
+      }
+      &:last-child {
+        padding-bottom: .5em;
+      }
+  
+      &:before {
+        content: attr(data-th)": "; // who knew you could do this? The internet, that's who.
+        font-weight: bold;
+  
+        // optional stuff to make it look nicer
+        width: 6.5em; // magic number :( adjust according to your own content
+        display: inline-block;
+        // end options
+        
+        @media (min-width: $breakpoint-alpha) {
+          display: none;
+        }
+      }
+    }
+    
+    th, td {
+      text-align: left;
+      
+      @media (min-width: $breakpoint-alpha) {
+        display: table-cell;
+        padding: .25em .5em;
+        
+        &:first-child {
+          padding-left: 0;
+        }
+        
+        &:last-child {
+          padding-right: 0;
+        }
+      }
+  
+    }
+    
+    
+  }
+  
+
+  .tableContainer{
+    height: 500px;
+    width: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    margin-top: 3%;
+  }
+  
+  // presentational styling
+  
+  @import 'https://fonts.googleapis.com/css?family=Montserrat:300,400,700';
+  
+  body {
+    // padding: 0 2em;
+    font-family: Montserrat, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+    color: #444;
+    background: #eee;
+  }
+  
+  h1 {
+    font-weight: normal;
+    letter-spacing: -1px;
+    color: #34495E;
+  }
+  
+  .rwdTable {
+    background: #34495E;
+    color: #fff;
+    border-radius: .4em;
+    overflow: hidden;
+    tr {
+      border-color: lighten(#34495E, 10%);
+    }
+    th, td {
+      margin: .5em 1em;
+      @media (min-width: $breakpoint-alpha) { 
+        padding: 1em !important; 
+      }
+    }
+    th, td:before {
+      color: #dd5;
+    }
+  }
