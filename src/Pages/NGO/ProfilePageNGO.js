@@ -78,7 +78,7 @@ export default function NGOProfile() {
             }
         }
 
-        // navigate('/ngoprofile', {state: sortedTaskList1})
+        navigate('/ngoprofile', {state: sortedTaskList1})
 
         // console.log(state)
 
@@ -100,7 +100,7 @@ export default function NGOProfile() {
                             <li><a className={styles.menuItem}><Link to="/" onClick={logout}>Log Out</Link></a></li>
                             {/* <li><a><Link to="/contactus">Contact Us</Link></a></li> */}
                             {/* <li><a className={styles.menuItem}><Link to="/home">Contact</Link></a></li> */}
-                            <li><a className={styles.menuItem}><Link to="/ngoprofile" onClick={profile}>Profile</Link></a></li>
+                            <li><a className={styles.menuItem}><Link to="/ngohome" onClick={profile}>Profile</Link></a></li>
                             <li><a className={styles.menuItem}><Link to="/ngohome">Home</Link></a></li>
 
 

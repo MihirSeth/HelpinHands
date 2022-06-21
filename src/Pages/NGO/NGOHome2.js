@@ -7,9 +7,9 @@ import {signOut} from "firebase/auth";
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
 
 
-export default function NGOHome(){
+export default function NGOHome2(){
     const navigate = useNavigate();
-    // const { state } = useLocation();
+    const { state } = useLocation();
 
 
     const logout = async () => {
@@ -41,18 +41,9 @@ export default function NGOHome(){
             // console.log(auth.currentUser.email)
 
 
-            // const tasksCols = collection(db, 'donations');
-            // const taskSnapshots = await getDocs(tasksCols);
-            // const taskLists = taskSnapshots.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-        
-            // let sortedTaskList1 = []
-            // for (let i=0;i<taskLists.length;i++){
-            //     if(taskLists[i].ngoName === info){
-            //         sortedTaskList1.push(taskLists[i])
-            //     }
-            // } 
-            // setText(sortedTaskList1.length)
+          
             // console.log(sortedTaskList1.length)
+            console.log(state)
           };
         getList()
     }, [])
@@ -74,22 +65,6 @@ export default function NGOHome(){
         }  
 
         navigate('/ngoprofile', {state: sortedTaskList1})
-        
-    }
-
-    const home2 = async() => {
-        const tasksCols = collection(db, 'donations');
-        const taskSnapshots = await getDocs(tasksCols);
-        const taskLists = taskSnapshots.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-    
-        let sortedTaskList1 = []
-        for (let i=0;i<taskLists.length;i++){
-            if(taskLists[i].ngoName === info){
-                sortedTaskList1.push(taskLists[i])
-            }
-        }  
-
-        navigate('/ngohome2', {state: sortedTaskList1.length})
         
     }
     
@@ -122,17 +97,11 @@ export default function NGOHome(){
                 </div>
             </div>
 
-            <h1 className={styles.profileHeading1}>Click the button below to get some stats</h1>
+            {/* <h1 className={styles.profileHeading}>Click the button below to get some stats</h1> */}
 
 
-            {/* <h1 className={styles.profileHeading}>Number of Donations: {text}</h1> */}
+            <h1 className={styles.profileHeading}>Number of Donations: {state}</h1>
 
-            <div className={styles.buttonContainer1}>
-                    <button className={styles.editButton1} onClick={home2}>View Stats</button> 
-                    {/* <button className={styles.listButton}>Donation List</button>  */}
-
-
-                </div>
 
            
         </div>
@@ -141,6 +110,3 @@ export default function NGOHome(){
 
     )
 }
-
-
-
