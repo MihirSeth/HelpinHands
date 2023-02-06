@@ -51,7 +51,7 @@
   font-size: 18px;
   color:lightgray;
   text-align: center;
-  // padding: 14px 16px;
+  /* // padding: 14px 16px; */
 }
 
 .navbarContainer1{
@@ -126,127 +126,66 @@ li a {
 }
 
 
-.mainInformationContainer{
-    display: flex;
-    align-items: center;
-    justify-content: space-around;
-    
+.hacker{
+  margin-top: 2%;
+  text-align: center;
+  font-size: larger;
+  font-weight: normal;
 }
 
-.informationContainer{
-    margin-top: 2%;
-    margin-bottom: 2%;
-    background-color: #F8F8F8;
-    width: 50%;
-    height: 600px;
-    /* border: 2px solid black; */
-
-    box-shadow: 0 2px 6px ;
-    border-radius: 15px;
-
-    /* display: flex;
-    align-items: flex-start;
-    justify-content: center; */
+.hackerContainer{
+  margin-top: 4%;
 }
 
-.mainContainer{
-    display: flex;
-    align-items: flex-start;
-    justify-content: flex-start;
-    flex-direction: row;
-    height: 50%;
-    width: 100%;
+.teamText{
+  text-align: center;
+  font-weight: bolder;
+  /* margin-top: 1%; */
+
 }
-
-
-.profileHeading{
-    //  padding-right: 6%;
-    color: black;
-    text-align: center;
-    /* color: white; */
-    font-size: 32px;
-    font-weight: bold;
-    margin-top: 2%;
-    // margin-bottom: 2%;
-
-  }
-
-
-  .donationNumber{
-    color: black;
-    text-align: center;
-    /* color: white; */
-    font-size: 68px;
-    font-weight: bold;
-    margin-top: 2%;
-    // margin-bottom: 2%;
-  }
-
-
-
-  // @import "compass/css3";
-
-  // More practical CSS...
-  // using mobile first method (IE8,7 requires respond.js polyfill https://github.com/scottjehl/Respond)
-  
-  
-
-  .tableContainer{
-    height: 500px;
-    width: 100%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    margin-top: 3%;
-  }
-  
-  // presentational styling
-  
-
-
 
 
 .infoContainer{
-    /* border: 2px solid black; */
-    width: 100%;
-    height: 50%;
-    display: flex;
-    align-items: flex-start;
-    justify-content: center;
-    // flex-direction: row;
-    gap: 5%;
-    margin-top: 1%;
+  /* border: 2px solid black; */
+  width: 100%;
+  height: 10%;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  /* flex-direction: row; */
+  gap: 5%;
+  margin-top: 1%;
 
 
 }
 
 .editContainer{
-  width: 50%;
-  height: 100%;
-  background-color: #F8F8F8;
-  // margin-bottom: 30%;
-  color: black;
-  text-align: center;
-  /* color: white; */
-  font-size: 32px;
-  font-weight: lighter;
-  padding-top: 2%;
-  padding-right: 2%;
-  padding-left: 2%;
+width: 50%;
+height: 100%;
+background-color: #F8F8F8;
+/* margin-bottom: 30%; */
+color: black;
+text-align: center;
+/* color: white; */
+font-size: 32px;
+font-weight: lighter;
+padding-top: 2%;
+padding-right: 2%;
+padding-left: 2%;
 
 }
 
 
 
 .buttonContainer1{
-  // border: 2px solid black; 
+  /* border: 2px solid black;  */
   width: 100%;
   height: 12%;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   flex-direction: row;
-  // gap: 5%;
+  /* gap: 5%; */
   margin-top: 2.5%;
 
 }
@@ -269,4 +208,69 @@ li a {
 .editButton1:active{
   /* box-shadow: 0 5px #666; */
   transform: translateY(2px);
+}
+
+
+
+
+.form{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+
+}
+
+.form .txt_field{
+  position: relative;
+  border-bottom: 2px solid #adadad;
+  margin-top: 30px;
+}
+.txt_field input{
+  width: 100%;
+  padding: 0 5px;
+  height: 40px;
+  font-size: 16px;
+  border: none;
+  background: none;
+  outline: none;
+}
+.txt_field label{
+  position: absolute;
+  top: 50%;
+  left: 5px;
+  color: #adadad;
+  transform: translateY(-50%);
+  font-size: 16px;
+  pointer-events: none;
+  transition: .5s;
+  color: black;
+}
+.txt_field span::before{
+  content: '';
+  position: absolute;
+  top: 40px;
+  left: 0;
+  width: 0%;
+  height: 2px;
+  background: #2691d9;
+  transition: .5s;
+}
+.txt_field input:focus ~ label,
+.txt_field input:valid ~ label{
+  top: -5px;
+  color: #2691d9;
+}
+.txt_field input:focus ~ span::before,
+.txt_field input:valid ~ span::before{
+  width: 100%;
+}
+.pass{
+  margin: -5px 0 20px 5px;
+  color: #a6a6a6;
+  cursor: pointer;
+}
+.pass:hover{
+  text-decoration: underline;
 }

@@ -1,5 +1,5 @@
 {
-  "name": "csproject",
+  "name": "helpinhand",
   "version": "0.1.0",
   "private": true,
   "dependencies": {
@@ -17,8 +17,7 @@
     "react-firebase-hooks": "^5.0.3",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
-    "react-scripts": "5.0.1",
-    "sass": "^1.52.3",
+    "react-scripts": "^5.0.1",
     "web-vitals": "^2.1.4"
   },
   "scripts": {
@@ -44,5 +43,8 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+  },
+  "devDependencies": {
+    "sass": "^1.54.3"
   }
 }

@@ -29,11 +29,22 @@
 
 .mainHeader{
   width: 100%;
-  background: linear-gradient(135deg, #15868C 0%, #158C76 0.01%, #2BB438 100%);
+  background: linear-gradient(135deg, #CA9980 0%, #984261 100%);
   height: 330px;
 }
 
 
+.navbar {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  padding-left: 20px;
+  gap: 3%;
+  padding-top: 3%;
+
+
+}
 .navbar {
   overflow: hidden;
   display: flex;
@@ -121,9 +132,18 @@ li a {
 
 .profilePageHeaderboxContainer h2{
   color: white;
-  font-size: 20px;
+  font-size: 24px;
   text-align: center;
   margin-top: 1%;
+  font-weight: lighter;
+}
+
+
+.profilePageHeaderboxContainer h3{
+  color: white;
+  font-size: 16px;
+  text-align: center;
+  /* margin-top: 1%; */
   font-weight: lighter;
 }
 
@@ -224,15 +244,34 @@ li a {
 }
 
 
-.answerLabel{
+input{
     color: black;
-    text-align: center;
+    /* text-align: center; */
     /* color: white; */
     font-size: 18px;
-    font-weight: lighter;
+    width: 100%;
+    /* font-weight: lighter; */
     padding-left: 2%;
+    background-color: #f3f3f3;
     /* margin-top: 2%;
     margin-bottom: 2%; */
+    border: 2px solid #f3f3f3;
+
+}
+
+
+.answerLabel{
+  color: black;
+  /* text-align: center; */
+  /* color: white; */
+  font-size: 18px;
+  width: 100%;
+  /* font-weight: lighter; */
+  padding-left: 2%;
+  background-color: #f3f3f3;
+  /* margin-top: 2%;
+  margin-bottom: 2%; */
+  border: 2px solid #f3f3f3;
 }
 
 
@@ -286,6 +325,41 @@ li a {
   }
   
   .listButton:active{
+    /* box-shadow: 0 5px #666; */
+    transform: translateY(2px);
+  }
+
+
+  .buttonContainer2{
+    /* // border: 2px solid black;  */
+    width: 100%;
+    height: 15%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-direction: row;
+    /* // gap: 5%; */
+    /* margin-top: 2.5%; */
+  
+  
+  }
+  
+  
+  .editButton2{
+    background-color: #3882F6;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    border-color: #1F2937;
+    padding: 20px;
+    width: 25%;
+    color: white;
+    font-weight: bold;
+  
+  }
+  
+  
+  .editButton2:active{
     /* box-shadow: 0 5px #666; */
     transform: translateY(2px);
   }

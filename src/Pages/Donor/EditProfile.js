@@ -1,11 +1,12 @@
 import { useState, useEffect, React } from "react";
-import styles from '../../static/ProfilePage.module.css';
+import styles from '../../static/EditProfilePage.module.css';
 import { Link, useNavigate } from "react-router-dom";
-import { db, collection, auth, getDocs } from '../firebase';
+import { db, collection, addDoc, auth, getDocs } from '../firebase';
 import {signOut} from "firebase/auth";
+import {doc, updateDoc } from "firebase/firestore";
 import logo from '../../assets/logo.svg'
 
-export default function ProfilePage(){
+export default function EditProfilePage(){
     const navigate = useNavigate();
 
 
@@ -22,8 +23,6 @@ export default function ProfilePage(){
       const [phoneNumber, setphoneNumber] = useState('')
       const [address, setAddress] = useState('')
       const [email, setEmail] = useState('')
-
-
 
       useEffect(() => { 
         const getList = async() => {
@@ -65,15 +64,38 @@ export default function ProfilePage(){
           };
         getList()
     }, [])
-    
-    const donationListFunction = () => {
-        navigate('/donationlist',{state: data })
-      };
 
-        
-      const editProfileFunction = () => {
-        navigate('/editprofile')
-      };
+
+    // const [addressUpdate, setAddressUpdate] = useState('')
+    // const [phoneNumberUpdate, setphoneNumberUpdate] = useState('')
+    // const [emailUpdate, setEmailUpdate] = useState('')
+
+    const updateEmail = async(emailID) => {
+            
+        const docRef = doc(db, "users", auth.currentUser.uid,);
+        const updateDeliveryType = await updateDoc(docRef, {
+            email: emailID,
+        });
+          
+    }
+
+    const updatePhoneNumber = async(phoneNumber) => {
+            
+        const docRef = doc(db, "users", auth.currentUser.uid,);
+        const updateDeliveryType = await updateDoc(docRef, {
+            phoneNumber: phoneNumber,
+        });
+    
+    }
+
+    const updateAddress = async(address) => {
+            
+        const docRef = doc(db, "users", auth.currentUser.uid,);
+        const updateDeliveryType = await updateDoc(docRef, {
+            address: address,
+        });
+    
+    }
 
 
 
@@ -84,7 +106,7 @@ export default function ProfilePage(){
                             
                 <div className={styles.navbar}>
                     <div className={styles.navbarContainer1}>
-                        <img className='logo-image' src={logo} alt="blume.clarity" height="300px"  ></img>
+                        <img className='logo-image' src={logo} alt="helpinhands" height="300px"  ></img>
                     </div>
                     <div className={styles.navbarContainer2}>
                     <ul>
@@ -100,14 +122,8 @@ export default function ProfilePage(){
                 </div>
                 <div className={styles.profilePageHeaderboxContainer}>
                     <h1 className={styles.profilePageHeaderboxContainer}>Hello {firstName}</h1>
-                    <h2 className={styles.profilePageHeaderboxContainer}>This is your Profile!</h2>
-                </div>
-
-
-                <div className={styles.buttonContainer}>
-                    <button className={styles.editButton} onClick={editProfileFunction}>Edit Profile</button> 
-                    <button className={styles.listButton} onClick={donationListFunction}>Donation List</button> 
-
+                    <h2 className={styles.profilePageHeaderboxContainer}>Edit your Profile here!</h2>
+                    <h3 className={styles.profilePageHeaderboxContainer}>Just change your details in the textbox!</h3>
 
                 </div>
 
@@ -124,7 +140,7 @@ export default function ProfilePage(){
                         <div className={styles.smallInformationContainer}>
                             <h1 className={styles.smallInformationHeading}>Email</h1>
                             <div className={styles.answerContainer}>
-                                <p className={styles.answerLabel}>{email}</p>
+                            <p className={styles.answerLabel}>{email}</p>
 
                             </div>
                         </div>
@@ -132,7 +148,7 @@ export default function ProfilePage(){
                         <div className={styles.smallInformationContainer}>
                             <h1 className={styles.smallInformationHeading}>Name</h1>
                             <div className={styles.answerContainer}>
-                                <p className={styles.answerLabel}>{firstName} {lastName}</p>
+                            <p className={styles.answerLabel}>{firstName} {lastName}</p>
                             </div>
                         </div>
                     </div>
@@ -143,14 +159,14 @@ export default function ProfilePage(){
                         <div className={styles.smallInformationContainer1}>
                             <h1 className={styles.smallInformationHeading}>Address</h1>
                             <div className={styles.answerContainer}>
-                                <p className={styles.answerLabel}>{address}</p>
+                                <input type='text' className={styles.answerLabel} onChange={e => updateAddress(e.currentTarget.value)} defaultValue={address} />
                             </div>
                         </div>
 
                         <div className={styles.smallInformationContainer1}>
                             <h1 className={styles.smallInformationHeading}>Phone</h1>
                             <div className={styles.answerContainer}>
-                                <p className={styles.answerLabel}>{phoneNumber}</p>
+                                <input type='text' className={styles.answerLabel} onChange={e => updatePhoneNumber(e.currentTarget.value)} defaultValue={phoneNumber} />
                             </div>
                         </div>
                     </div>
@@ -164,8 +180,15 @@ export default function ProfilePage(){
 
                 </div>  */}
 
+
             </div>
             
+
+            {/* <div className={styles.buttonContainer2}>
+                    <button className={styles.editButton2} onClick={updatetheDoc}>Update</button> 
+                    {/* <button className={styles.listButton}>Donation List</button>  */}
+            {/* </div>  */}
+
 
         </div>
 

@@ -5,7 +5,8 @@ import { useNavigate, Link, useLocation } from "react-router-dom";
 import { db, collection, addDoc, auth, getDocs } from '../firebase';
 import { signOut } from "firebase/auth";
 // import { doc, setDoc, } from 'firebase/firestore';
-import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import { doc, updateDoc } from "firebase/firestore";
+import logo from '../../assets/logo.svg'
 
 
 export default function NGOProfile() {
@@ -19,10 +20,10 @@ export default function NGOProfile() {
         navigate('/')
     };
 
-    //   const [text, setText] = useState ('')
+    // const [text, setText] = useState ('')
 
     const [info, setInfo] = useState('')
-    // const [data, setData] = useState([])
+    // const [sort, setSort] = useState('')
 
 
 
@@ -40,31 +41,36 @@ export default function NGOProfile() {
                 }
             }
             setInfo(sortedTaskList[0].id)
-            // console.log(sortedTaskList)
-            // console.log(auth.currentUser.email)
 
-            // const tasksCols = collection(db, 'donations');
-            // const taskSnapshots = await getDocs(tasksCols);
-            // const taskLists = taskSnapshots.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
-
-            // let sortedTaskList1 = []
-            // for (let i = 0; i < taskLists.length; i++) {
-            //     if (taskLists[i].ngoName === info) {
-            //         sortedTaskList1.push(taskLists[i])
-            //     }
-            // }
-
-            // setData(sortedTaskList1)
-
-            // console.log(sortedTaskList1)
         };
+
+        // console.log(state)
         getList()
     }, [])
 
-    // const [item, setItem] = useState('');
-    // const [quantity, setQuantity] = useState('');
-    // const [ngoName, setngoName] = useState('');
-    // const [docID, setdocID] = useState('');
+        const updatetheDoc = async(stats, docID) => {
+            
+
+            // console.log(stats,docID)
+            const docRef = doc(db, "donations", docID);
+            const updateDeliveryType = await updateDoc(docRef, {
+                status: stats,
+            });
+
+            const tasksCols = collection(db, 'donations');
+            const taskSnapshots = await getDocs(tasksCols);
+            const taskLists = taskSnapshots.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    
+            let sortedTaskList1 = []
+            for (let i = 0; i < taskLists.length; i++) {
+                if (taskLists[i].ngoName === info) {
+                    sortedTaskList1.push(taskLists[i])
+                }
+            }
+            navigate('/ngostats', {state: sortedTaskList1})
+
+        }
+
 
     const profile = async () => {
         const tasksCols = collection(db, 'donations');
@@ -77,11 +83,46 @@ export default function NGOProfile() {
                 sortedTaskList1.push(taskLists[i])
             }
         }
+        // console.log(sortedTaskList1)
+        navigate('/ngostats', {state: sortedTaskList1})
 
-        navigate('/ngoprofile', {state: sortedTaskList1})
+    }
 
-        // console.log(state)
 
+    const donationCount = async() => {
+        const tasksCols = collection(db, 'donations');
+        const taskSnapshots = await getDocs(tasksCols);
+        const taskLists = taskSnapshots.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    
+        let sortedTaskList1 = []
+        for (let i=0;i<taskLists.length;i++){
+            if(taskLists[i].ngoName === info){
+                sortedTaskList1.push(taskLists[i])
+            }
+        }  
+
+        navigate('/ngohome2', {state: sortedTaskList1.length})
+        
+    }
+
+
+    const sortTable = async(status) => {
+        const tasksCols = collection(db, 'donations');
+        const taskSnapshots = await getDocs(tasksCols);
+        const taskLists = taskSnapshots.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+    
+        // console.log(status)
+        let sortedTaskListDelivered = []
+        for (let i=0;i<taskLists.length;i++){
+
+            
+            if((taskLists[i].ngoName === info) && (taskLists[i].status === status)){
+                sortedTaskListDelivered.push(taskLists[i])
+            }
+        }  
+
+        navigate('/ngostats', {state: sortedTaskListDelivered})
+        
     }
 
     // if(!data) { return null }
@@ -93,14 +134,14 @@ export default function NGOProfile() {
 
                 <div className={styles.navbar}>
                     <div className={styles.navbarContainer1}>
-                        <p className={styles.title}>Header Logo</p>
+                        <img className='logo-image' src={logo} alt="helpinhands" height="300px"  ></img>
                     </div>
                     <div className={styles.navbarContainer2}>
                         <ul>
                             <li><a className={styles.menuItem}><Link to="/" onClick={logout}>Log Out</Link></a></li>
                             {/* <li><a><Link to="/contactus">Contact Us</Link></a></li> */}
                             {/* <li><a className={styles.menuItem}><Link to="/home">Contact</Link></a></li> */}
-                            <li><a className={styles.menuItem}><Link to="/ngohome" onClick={profile}>Profile</Link></a></li>
+                            <li><a className={styles.menuItem}><Link to="/ngohome" onClick={profile}>Stats</Link></a></li>
                             <li><a className={styles.menuItem}><Link to="/ngohome">Home</Link></a></li>
 
 
@@ -110,11 +151,24 @@ export default function NGOProfile() {
                 </div>
                 <div className={styles.donationListHeaderboxContainer}>
                     <h1 className={styles.donationListHeaderboxContainerHeading}>Welcome {info}!</h1>
-                    <h2 className={styles.donationListHeaderboxContainerHeading}>These are the donations coming your way!</h2>
+                    <h2 className={styles.donationListHeaderboxContainerHeading}>These are the donations coming your way! <Link to='/ngohome2' onClick={donationCount}>Click Here</Link> to get the number of donations. </h2>
 
                 </div>
             </div>
 
+            <div className={styles.sorter} >
+                <h1>Sort By</h1>
+
+                <form className={styles.sortList}>
+
+                <input list="sortList" type="text" onChange={e => sortTable(e.currentTarget.value)}/>
+                        <datalist id="sortList">
+                        <option value="Delivered"></option>
+                        <option value="Not Delivered"></option>
+                        </datalist>
+
+                </form>
+            </div>
 
             <div className={styles.tableContainer}>
                 <table className={styles.rwdTable}>
@@ -125,35 +179,12 @@ export default function NGOProfile() {
                         <th>Time</th>
                         <th>Date</th>
                         <th>Delivery Type</th>
-                        <th>User Profile</th>
+                        <th>Status</th>
 
 
 
                     </tr>
-                    {/* <tr>
-                    <td data-th="Order">$460,935,665</td>
-                    <td data-th="Name">Star Wars</td>
-                    <td data-th="Email">Adventure, Sci-fi</td>
-                    <td data-th="Phone Number">1977</td>
-                    <td data-th="Gross">$460,935,665</td>
-
-                </tr>
-                <tr>
-                    <td data-th="Order">$16,295,774</td>
-                    <td data-th="Name">Howard The Duck</td>
-                    <td data-th="Email">"Comedy"</td>
-                    <td data-th="Phone Number">1986</td>
-                    <td data-th="Gross">$460,935,665</td>
-
-                </tr>
-                <tr>
-                    <td data-th="Order">$115,000,000</td>
-                    <td data-th="Name">American Graffiti</td>
-                    <td data-th="Email">Comedy, Drama</td>
-                    <td data-th="Phone Number">1973</td>
-                    <td data-th="Gross">$460,935,665</td>
-
-                </tr> */}
+                
 
                     {state.map((val) => {
                         return (
@@ -164,12 +195,31 @@ export default function NGOProfile() {
                                 <td data-th="Time">{val.time}</td>
                                 <td data-th="Date">{val.date}</td>
                                 <td data-th="Delivery Type">{val.deliveryType}</td>
+                                <td data-th="Status">
+                                    <form className={styles.deliveryOptions}>
+
+                                        <input list="deliveryOption" type="text" onChange={e => updatetheDoc(e.currentTarget.value, val.docID)}  placeholder={val.status}/>
+                                        <datalist id="deliveryOption">
+                                        <option value="Delivered"></option>
+                                        <option value="Not Delivered"></option>
+                                        </datalist>
+                                        <button type="submit"><i class="fa fa-search"></i></button>
+                                    </form>
+
+                                </td>
+
 
                             </tr>
                         )
                     })}
                 </table>
+                
             </div>
+
+
+            {/* <div className={styles.buttonContainer2}>
+                    <button className={styles.editButton2} onClick={updatetheDoc}>Update</button> 
+            </div> */}
 
         </div>
 

@@ -3,7 +3,8 @@ import styles from '../../static/DonationList.module.scss';
 import { useNavigate,Link, useLocation } from "react-router-dom";
 import { db, collection, auth, getDocs } from '../firebase';
 import {signOut} from "firebase/auth";
-import { doc, updateDoc } from "firebase/firestore";
+// import { doc, updateDoc } from "firebase/firestore";
+import logo from '../../assets/logo.svg'
 
 
 export default function DonationList(){
@@ -18,7 +19,7 @@ export default function DonationList(){
         navigate('/')
       };
 
-      const [text, setText] = useState ('')
+    //   const [text, setText] = useState ('')
 
       const [info, setInfo] = useState('')
       // const [checked, setChecked] = useState('')
@@ -67,7 +68,7 @@ export default function DonationList(){
                             
                 <div className={styles.navbar}>
                     <div className={styles.navbarContainer1}>
-                        <p className={styles.title}>Header Logo</p>
+                      <img className='logo-image' src={logo} alt="helpinhands" height="300px"  ></img>
                     </div>
                     <div className={styles.navbarContainer2}>
                     <ul>

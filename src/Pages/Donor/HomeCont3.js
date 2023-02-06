@@ -3,7 +3,8 @@ import styles from '../../static/Home.module.css';
 import { useNavigate, Link, useLocation } from "react-router-dom";
 import { db, collection, addDoc, auth } from '../firebase';
 import {signOut} from "firebase/auth";
-import { doc, updateDoc,getDocs, getDoc } from "firebase/firestore";
+import { doc,getDocs, getDoc } from "firebase/firestore";
+import logo from '../../assets/logo.svg'
 
 export default function HomeContinued3(){
     const navigate = useNavigate();
@@ -76,7 +77,7 @@ export default function HomeContinued3(){
                             
                 <div className={styles.navbar}>
                     <div className={styles.navbarContainer1}>
-                        <p className={styles.title}>Header Logo</p>
+                        <img className='logo-image' src={logo} alt="helpinhands" height="300px"  ></img>
                     </div>
                     <div className={styles.navbarContainer2}>
                     <ul>

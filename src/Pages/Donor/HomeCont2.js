@@ -1,9 +1,10 @@
 import { useState, useEffect, React } from "react";
 import styles from '../../static/Home.module.css';
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import { db, collection, addDoc, auth, getDocs } from '../firebase';
+import { db, collection, auth, getDocs } from '../firebase';
 import {signOut} from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
+import logo from '../../assets/logo.svg'
 
 export default function HomeContinued2(){
     const navigate = useNavigate();
@@ -77,7 +78,7 @@ export default function HomeContinued2(){
                             
                 <div className={styles.navbar}>
                     <div className={styles.navbarContainer1}>
-                        <p className={styles.title}>Header Logo</p>
+                        <img className='logo-image' src={logo} alt="helpinhands" height="300px"  ></img>
                     </div>
                     <div className={styles.navbarContainer2}>
                     <ul>

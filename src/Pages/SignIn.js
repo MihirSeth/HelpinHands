@@ -70,6 +70,9 @@ export default function SignIn(){
                     <div className={styles.signup_link}>
                         Not a member? <Link to="/signup">Signup</Link>
                     </div>
+                    <div className={styles.signup_link}>
+                        Want to return <Link to="/">home</Link>?
+                    </div>
                 </div>
             </div>
         </div>

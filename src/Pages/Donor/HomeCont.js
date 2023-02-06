@@ -4,6 +4,7 @@ import { useNavigate,Link, useLocation } from "react-router-dom";
 import { db, collection, auth, getDocs } from '../firebase';
 import {signOut} from "firebase/auth";
 import { doc, updateDoc } from "firebase/firestore";
+import logo from '../../assets/logo.svg'
 
 
 export default function HomeContinued(){
@@ -18,7 +19,7 @@ export default function HomeContinued(){
         navigate('/')
       };
 
-      const [text, setText] = useState ('')
+    //   const [text, setText] = useState ('')
 
       const [info, setInfo] = useState('')
       const [checked, setChecked] = useState('')
@@ -46,28 +47,6 @@ export default function HomeContinued(){
           };
         getList()
     }, [])
-    
-    //   const onSubmit = (e) => {
-    //     e.preventDefault(); /*Prevent refresh*/
-
-    //     // if(!text | !date | !time) {
-    //     //     alert('Please fill out all forms')
-    //     //     return
-    //     // }
-
-    //     // addTask({text})
-
-       
-
-
-    //       const updateDoc = async() => {
-    //         const updateDeliveryType = await updateDoc(docRef, {
-    //             deliveryType: checked,
-    //           });
-    //     }
-    //     updateDoc();
-
-    // };
 
 
     const saveFunction = () => {
@@ -85,6 +64,7 @@ export default function HomeContinued(){
                 const updatetheDoc = async() => {
                     const updateDeliveryType = await updateDoc(docRef, {
                         deliveryType: 'Pickup',
+                        docID: state.docID,
                     });
                     navigate('/homecont1', {state: state.docID})
                 }
@@ -96,6 +76,8 @@ export default function HomeContinued(){
                         time: 'NA',
                         date: 'NA',
                         deliveryType: 'Drop',
+                        docID: state.docID,
+
                     });
                     navigate('/homecont3', {state: {
                         // docID : docID,
@@ -119,7 +101,7 @@ export default function HomeContinued(){
                             
                 <div className={styles.navbar}>
                     <div className={styles.navbarContainer1}>
-                        <p className={styles.title}>Header Logo</p>
+                        <img className='logo-image' src={logo} alt="helpinhands" height="300px"  ></img>
                     </div>
                     <div className={styles.navbarContainer2}>
                     <ul>

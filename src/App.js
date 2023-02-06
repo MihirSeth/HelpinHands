@@ -1,5 +1,6 @@
 // import logo from './logo.svg';
 // import './App.css';
+import React from 'react'
 import { Routes, Route} from "react-router-dom";
 import Home from "./Pages/Donor/Home";
 import SignIn from './Pages/SignIn';
@@ -20,6 +21,9 @@ import PageNotFound from './Pages/PageNotFound';
 // import { auth } from '/Users/mihirseth/Desktop/React App/csproject/src/Pages/firebase.js';
 // import { useAuthState } from 'react-firebase-hooks/auth';
 import NGOHome2 from "./Pages/NGO/NGOHome2";
+import EditProfilePage from "./Pages/Donor/EditProfile";
+import ContactUs from './Pages/ContactUs';
+import ContactUs2 from './Pages/ContactUs2';
 
 function App() {
   // const [user] = useAuthState(auth);
@@ -43,8 +47,14 @@ function App() {
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/donationlist" element={<DonationList />} />
         <Route path="/ngohome" element={<NGOHome />} />
-        <Route path="/ngoprofile" element={<NGOProfile />} />
+        <Route path="/ngostats" element={<NGOProfile />} />
         <Route path="/ngohome2" element={<NGOHome2 />} />
+        <Route path="/editprofile" element={<EditProfilePage />} />
+        <Route path="/contactus" element={<ContactUs />} />
+        <Route path="/contactus2" element={<ContactUs2 />} />
+
+
+
 
 
         {/* <Route component={() => (<div>404 Not found </div>)} /> */}

@@ -33,8 +33,9 @@ export default function SignUp(){
     const [firstName, setFirstName] = useState('');
     const [lastName, setLastName] = useState('');
     const [phoneNumber, setPhoneNumber] = useState('');
+    const [address, setAddress] = useState('');
 
-    const [userType, setUserType] = useState('');
+    // const [userType, setUserType] = useState('');
 
 
     const signUpFunction = async() => {
@@ -45,40 +46,34 @@ export default function SignUp(){
               password
             );
 
-            // if (userType==='Donor'){
+            if (!email | !password | !firstName | !lastName | !phoneNumber) {
+                alert('Please fill out all forms')
+            } else{
                 const addTheTask = async() => {
                     const addTask = await setDoc(doc(db, "users", auth.currentUser.uid), {
                         email: email,
                         firstName: firstName,
                         lastName: lastName,
                         phoneNumber: phoneNumber,
-                        userType: userType,
+                        address: address,
+                        // userType: userType,
+
                         uid: auth.currentUser.uid,
                     })
+                    history('/home')
+
                 }
                 addTheTask();
-            // } else{
-            //     const addTheTask = async() => {
-            //         const addTask = await setDoc(doc(db, "ngos", firstName), {
-            //             email: email,
-            //             firstName: firstName,
-            //             lastName: lastName,
-            //             phoneNumber: phoneNumber,
-            //             userType: userType,
-            //             uid: auth.currentUser.uid,
-            //         })
-            //     }
-            //     addTheTask();
-            // }
+            }
                 
-            history('/home')
-
           } catch (error) {
               console.log(error)
             if (password.length < 6){
                 alert('Password should be at least 6 characters!')
-            }
-            else if(!email | !password) {
+            } else if(error="FirebaseError: Firebase: Error (auth/email-already-in-use)."){
+                alert('Your account already exists!')
+
+            } else if(!email | !password | !firstName | !lastName | !phoneNumber) {
               alert('Please fill out all forms')
               
           }
@@ -89,6 +84,7 @@ export default function SignUp(){
         <div className={styles.main}>
             <div className={styles.center}>
             <h1>Sign Up</h1>
+            <h1 className={styles.fontHeader}>NGO's <Link to="/contactus">click here</Link></h1>
             <div className={styles.form}>
            
 
@@ -110,22 +106,29 @@ export default function SignUp(){
                 <label>Phone Number</label>
             </div>
 
-            <p>User Type:</p>
 
-            <form className={styles.dropdown}>
+            <div className={styles.txt_field}>
+                <input type="text" name='text' value={address} onChange={e => setAddress(e.currentTarget.value)} required/>
+                <span></span>
+                <label>Address</label>
+            </div>
+
+            {/* <p>User Type:</p> */}
+
+            {/* <form className={styles.dropdown}> */}
                 {/* <button className={styles.dropbtn}>Dropdown</button> */}
-                <input list="userTypeList" type='text' className={styles.dropbtn} value={userType} onChange={e => setUserType(e.currentTarget.value)} required/>
+                {/* <input list="userTypeList" type='text' className={styles.dropbtn} value={userType} onChange={e => setUserType(e.currentTarget.value)} required/> */}
 
                 {/* <div className={styles.dropdownContent}> */}
-                            <datalist id="userTypeList">
+                            {/* <datalist id="userTypeList">
                             <option value="Donor"></option>
                             <option value="NGO"></option>
-                            </datalist>
+                            </datalist> */}
 
                             {/* <button type="submit"><i class="fa fa-search"></i></button> */}
 
                 {/* </div> */}
-            </form>
+            {/* </form> */}
 
 
             {/* <form className={styles.donorItems}>
@@ -151,6 +154,9 @@ export default function SignUp(){
             <input onClick={signUpFunction} type="submit" value="Sign Up"/>
             <div className={styles.signup_link}>
                 Already a member? <Link to="/signin">Sign In</Link>
+            </div>
+            <div className={styles.signup_link}>
+                Want to return <Link to="/">home</Link>?
             </div>
             </div>
         </div>

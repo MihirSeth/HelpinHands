@@ -5,6 +5,7 @@ import { db, collection, addDoc, auth, getDocs } from '../firebase';
 import {signOut} from "firebase/auth";
 // import { doc, setDoc, } from 'firebase/firestore';
 import { deleteDoc, doc, updateDoc } from "firebase/firestore";
+import logo from '../../assets/logo.svg'
 
 
 export default function NGOHome2(){
@@ -64,7 +65,7 @@ export default function NGOHome2(){
             }
         }  
 
-        navigate('/ngoprofile', {state: sortedTaskList1})
+        navigate('/ngostats', {state: sortedTaskList1})
         
     }
     
@@ -76,14 +77,14 @@ export default function NGOHome2(){
                             
                 <div className={styles.navbar}>
                     <div className={styles.navbarContainer1}>
-                        <p className={styles.title}>Header Logo</p>
+                        <img className='logo-image' src={logo} alt="helpinhands" height="300px"  ></img>
                     </div>
                     <div className={styles.navbarContainer2}>
                     <ul>
                         <li><a className={styles.menuItem}><Link to="/" onClick={logout}>Log Out</Link></a></li>
                         {/* <li><a><Link to="/contactus">Contact Us</Link></a></li> */}
                         {/* <li><a className={styles.menuItem}><Link to="/home">Contact</Link></a></li> */}
-                        <li><a className={styles.menuItem}><Link to="/ngohome" onClick={profile}>Profile</Link></a></li>
+                        <li><a className={styles.menuItem}><Link to="/ngohome" onClick={profile}>Stats</Link></a></li>
                          <li><a className={styles.menuItem}><Link to="/ngohome">Home</Link></a></li>
 
 
@@ -93,14 +94,18 @@ export default function NGOHome2(){
                 </div>
                 <div className={styles.donationListHeaderboxContainer}>
                     <h1 className={styles.donationListHeaderboxContainerHeading}>Hey {info}!</h1>
-                    <h2 className={styles.donationListHeaderboxContainerHeading}>This is your home page!</h2>
+                    <h2 className={styles.donationListHeaderboxContainerHeading}>View more stats below!</h2>
                 </div>
             </div>
 
             {/* <h1 className={styles.profileHeading}>Click the button below to get some stats</h1> */}
 
 
-            <h1 className={styles.profileHeading}>Number of Donations: {state}</h1>
+            <h1 className={styles.profileHeading}>Number of Donations: </h1>
+            <h1 className={styles.donationNumber}>{state}</h1>
+
+
+            
 
 
            
